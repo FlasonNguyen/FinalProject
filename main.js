@@ -43,7 +43,7 @@ app.use('/newsfeed', require('./router/newsfeed'))
 app.use('/announcements', require('./router/announcement'))
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://localhost:27017/phucluan', {
+mongoose.connect('mongodb+srv://admin:admin@cluster0.cqawp.mongodb.net/phucluan?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
