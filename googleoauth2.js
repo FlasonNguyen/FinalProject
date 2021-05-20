@@ -13,7 +13,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: "507699291037-qd15fcc8d6cncol089bg92q1sq6dr3mt.apps.googleusercontent.com",
     clientSecret: "X9TcZv6GPKMDb2fdFeHB5Stl",
-    callbackURL: "http://localhost:9999/google/callback"
+    callbackURL: "https://congthongtinsinhvientdtu.herokuapp.com/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
    if(profile._json.hd == 'student.tdtu.edu.vn') {
