@@ -254,18 +254,19 @@
                                     </div>
                                 </div>
                                 <% if(comments) {comments.reverse(); comments.forEach(comment => { %>
-                                  <% if(comment.postid == post._id) { %>
+                                  <% if(comment.postid != post._id) { %>
                                     <div class="post_wrapper" >
-                                        <% if(comment.author == user.name || user.role == 'admin') { %> 
-                                          <div class="header_wrapper text-right">
-                                              <button type="button" data-id="<%= comment._id %> " class="btn btn-danger btn-sm deletecomment">Xóa</button>
-                                          </div>
-                                        <% } %> 
-                                        <h5><%= comment.author %></h5>
-                                        <span class="date"><%= comment.createAt %></span>
-                                        <p class="txt"><%= comment.comment %></p>
-                                    </div>
-                                  <% } %> 
+                                      <% if(comment.author == user.name || user.role == 'admin') { %> 
+                                        <div class="header_wrapper text-right">
+                                            <button type="button" data-id="<%= comment._id %> " class="btn btn-danger btn-sm deletecomment">Xóa</button>
+                                        </div>
+                                      <% } %> 
+                                      <h5><%= comment.author %></h5>
+                                      <span class="date"><%= comment.createAt %></span>
+                                      <p class="txt"><%= comment.comment %></p>
+                                  </div>
+                                    
+                                  <% } %>
                                 <% })} %>
                             </div>
                         </div>

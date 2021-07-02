@@ -6,6 +6,8 @@ $(document).ready(function() {
         let data = e.target
         let id = data.dataset.id
         let comment = $(`.commentContent${id}`).val()
+        console.log(id)
+        console.log(comment)
         $.ajax({
             url: '/newsfeed/commitComment',
             type: 'POST',

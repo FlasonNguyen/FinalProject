@@ -254,19 +254,24 @@
                                       <button class="btn btn-success sendComment" data-id="<%= e._id %> " type="button">Bình luận</button>
                                     </div>
                                 </div>
-                                <% if(comments) {comments.reverse(); comments.forEach(comment => { %>
-                                  <% if(comment.postid == e._id) { %> 
-                                <div class="post_wrapper">
-                                    <% if(comment.author == user.name || user.role == 'admin') { %> 
-                                    <div class="header_wrapper text-right">
-                                        <button type="button" data-id="<%= comment._id %> " class="btn btn-danger btn-sm deletecomment">Xóa</button>
+                                <% if(comments) {comments = comments.reverse(); comments.forEach(comment => { %>
+                                  <% if(comment.postid == post._id) { %>
+                                    <div class="post_wrapper">
+                                      <% if(user.fullname == comment.user) { %> 
+                                        <form action="/dashboard/comment/delete/<%= comment._id %>" method="post">
+                                          <div>
+                                              <!-- <button type="button" class="btn btn-sm"><i class="far fa-edit"></i></button> -->
+                                              <button type="submit" class="btn btn-sm"><i class="far fa-trash-alt"></i></button>
+                                          </div>
+                                        </form>
+                                      <% } %> 
+                                        <br>
+                                        <h5><%= comment.user %></h5>
+                                        <span class="date"><%= comment.createAt %></span>
+                                        <p class="txt"><%= comment.comment %></p>
                                     </div>
-                                    <% } %> 
-                                    <h5><%= comment.author %></h5>
-                                    <span class="date"><%= comment.createAt %></span>
-                                    <p class="txt"><%= comment.comment %></p>
-                                </div>
-                                <% } %> 
+                                    <br>
+                                  <% } %> 
                                 <% })} %>
                             </div>
                         </div>

@@ -12,12 +12,7 @@ router.get('/' , (req , res)=>{
         return res.redirect('/login')
     }
     let posts = undefined
-    let comments = undefined
     let anno = undefined
-    Comments.find()
-    .then(data => {
-        comments = data
-    })
     Newsfeeds.find()
     .then(data => {
         posts = data
@@ -28,7 +23,11 @@ router.get('/' , (req , res)=>{
     })
     Users.findOne({_id: req.session._id}, function (e, data) {
         //console.log(data)
-        return res.render('newsfeed',{user: data, news: posts, comments: comments, announcements: anno})
+        Comments.find()
+        .then(binhluan => {
+            return res.render('newsfeed',{user: data, news: posts, comments: binhluan, announcements: anno})
+        })
+        
     })
 })
 router.get('/:user', (req, res) => {
@@ -109,13 +108,15 @@ router.post('/commitComment', (req, res) => {
     if(!comment || !feedid) {
         return res.redirect('/newsfeed')
     }
-    let comments = new Comments({
+    console.log(req.body)
+    let temp = new Comments({
         comment: comment,
         author: req.session.name,
         postid: feedid
     })
-    comments.save()
-    return res.json({code: 0, message: 'OK'})
+    console.log(temp)
+    temp.save()
+    return res.json({code: 0, message: 'OK', data: temp})
 })
 //Xong
 router.post('/comment/delete/:id', (req, res) => {
