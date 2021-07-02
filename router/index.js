@@ -98,7 +98,7 @@ router.post('/UpdateAccount' , (req , res)=>{
        avatar: avatar
    }})
    .then(data => {
-       console.log(data)
+       req.session.name = name
        return res.redirect('/newsfeed')
    })
 })
